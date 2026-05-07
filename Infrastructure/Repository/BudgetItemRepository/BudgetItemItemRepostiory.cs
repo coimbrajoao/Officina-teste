@@ -3,11 +3,11 @@ using OficinaMecanica.Models;
 
 namespace OficinaMecanica.Infrastructure.Repository.BudGetItemRepository;
 
-public class BudgetItemRepostiory : IBudgetRepository
+public class BudgetItemItemRepostiory : IBudgetItemRepository
 {
     private readonly ApplicationDbContext _dbContext;
 
-    public BudgetItemRepostiory(ApplicationDbContext dbContext)
+    public BudgetItemItemRepostiory(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

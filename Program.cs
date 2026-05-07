@@ -1,3 +1,4 @@
+using Microsoft.OpenApi;
 using OficinaMecanica.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+
+    options.AddSecurityRequirement(options => new OpenApiSecurityRequirement
+    {
+        [ new OpenApiSecuritySchemeReference("bearer", options)] = []
+    });
+    
+});
 builder.Services.AddInfrastructure(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -15,7 +32,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

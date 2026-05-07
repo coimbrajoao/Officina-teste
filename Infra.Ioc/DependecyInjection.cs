@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using OficinaMecanica.Infrastructure.Context;
 using OficinaMecanica.Infrastructure.Repository;
+using OficinaMecanica.Infrastructure.Repository.BudGetItemRepository;
+using OficinaMecanica.Service.BudgetService;
 
 namespace OficinaMecanica.Infra.Ioc;
 
@@ -14,6 +16,8 @@ public static class DependecyInjection
                 optionsBuilder => optionsBuilder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
         });
         services.AddScoped<IBudgetRepository, BudgetRepository>();
+        services.AddScoped<IBudgetService, BudgetService>();
+        services.AddScoped<IBudgetItemRepository, BudgetItemItemRepostiory>();
         return services;
     }
 }

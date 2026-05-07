@@ -9,7 +9,6 @@ public class BudGetItemConfiguration : IEntityTypeConfiguration<BudgetItens>
     public void Configure(EntityTypeBuilder<BudgetItens> builder)
     {
         builder.HasKey(x => x.idBudGetItens);
-        builder.Property(x => x.idBudGetItens);
         
         builder.Property(x => x.Descricao).HasMaxLength(100)
             .IsRequired()

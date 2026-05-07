@@ -9,7 +9,6 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
     public void Configure(EntityTypeBuilder<Budget> builder)
     {
         builder.HasKey(x => x.IdBudget);
-        builder.Property(x => x.IdBudget);
         builder.Property(x => x.ClintId).IsRequired();
         builder.Property(x => x.vehicle).IsRequired();
         builder.HasMany(x => x.BudgetItensList)
